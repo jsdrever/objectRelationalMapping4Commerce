@@ -1,4 +1,5 @@
 require('dotenv').config();
+//! should i add a path: something here
 
 const Sequelize = require('sequelize');
 

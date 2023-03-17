@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
   }
   include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
   //! be sure to include its associated Product data
+  //todo figure out the syntax for this include model that is clearly not correct and the other homies below
 });
 
 router.get('/:id', async (req, res) => {

@@ -37,7 +37,13 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+  include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
   //! be sure to include its associated Products
+  // todo it has to be one of these... so above is as below
+  // {include: {
+  //   model: Product,
+  //   attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+  // }}
 });
 
 router.post('/', async (req, res) => {
@@ -52,6 +58,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  //! I couldnt find an example of put 
 });
 
 router.delete('/:id', async (req, res) => {
@@ -68,7 +75,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(locationData);
+    res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
   }
