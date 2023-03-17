@@ -11,13 +11,13 @@ Product.belongsTo(Category, {
 // Categories have many Products
 Category.hasMany(Product, {
   foreignKey: 'category_id',
-  //! foreignKey: 'driver_id', find the id needed for product
+  // foreignKey: 'driver_id', find the id needed for product
   onDelete: 'CASCADE'
 });
 // Products belongToMany Tags (through ProductTag)
 Product.belongsToMany(Tag, {
   // Define the third table needed to store the foreign keys
-  //! fix this not sure what to put below here
+  // fix this not sure what to put below here
   // through: {
   //     model: ProductTag,
   //     unique: false
@@ -28,7 +28,7 @@ Product.belongsToMany(Tag, {
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
   // Define the third table needed to store the foreign keys
-  //! fix this not sure what to put below here
+  // fix this not sure what to put below here
   through: ProductTag,
   foreignKey: 'tag_id'
   });

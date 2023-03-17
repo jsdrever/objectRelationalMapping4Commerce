@@ -6,21 +6,24 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   // find all tags
   try {
-    const tagData = await Tag.findAll();
+    const tagData = await Tag.findAll(
+      // include: [{ model: Tag, through: ????, as: '???' }]
+      //! be sure to include its associated Product data
+      //todo figure out the syntax for this include model that is clearly not correct and the other homies below
+
+    );
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
   }
-  include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
-  //! be sure to include its associated Product data
-  //todo figure out the syntax for this include model that is clearly not correct and the other homies below
 });
 
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   try {
     const tagData = await Tag.findByPk(req.params.id, {
-      // JOIN with travellers, using the Trip through table
+      // include: [{ model: Tag, through: ????, as: '?????' }]
+      //! be sure to include its associated Product data
     });
     
     if (!locationData) {
@@ -32,8 +35,6 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  //! be sure to include its associated Product data
-  include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
 });
 
 router.post('/', async (req, res) => {
@@ -57,7 +58,7 @@ router.delete('/:id', async (req, res) => {
       where: { id: req.params.id }
     });
     if (!tagData) {
-      res.status(404).json({ message: 'No trip with this id!' });
+      res.status(404).json({ message: 'No tag with this id!' });
       return;
     }
     res.status(200).json(tagData);

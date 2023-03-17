@@ -37,8 +37,8 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
-  //! be sure to include its associated Products
+  // include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
+  // be sure to include its associated Products
   // todo it has to be one of these... so above is as below
   // {include: {
   //   model: Product,
