@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  // be sure to include its associated Product data
+  include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
+  //! be sure to include its associated Product data
 });
 
 router.get('/:id', async (req, res) => {
@@ -19,19 +20,19 @@ router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk(req.params.id, {
       // JOIN with travellers, using the Trip through table
-      include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
     });
-
+    
     if (!locationData) {
       res.status(404).json({ message: 'No location found with this id!' });
       return;
     }
-
+    
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
   }
-  // be sure to include its associated Product data
+  //! be sure to include its associated Product data
+  include: [{ model: Tag, through: Trip, as: 'location_travellers' }]
 });
 
 router.post('/', async (req, res) => {
@@ -45,7 +46,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+  //! update a tag's name by its `id` value
 });
 
 router.delete('/:id', async (req, res) => {
