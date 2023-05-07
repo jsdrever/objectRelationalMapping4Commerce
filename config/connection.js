@@ -9,7 +9,7 @@ const sequelize = process.env.JAWSDB_URL
   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
       host: '127.0.0.1',
       // sudo open -a TextEdit /etc/hosts
-      // host: 'localhost',
+      //! host: 'localhost',
       dialect: 'mysql',
       dialectOptions: {
         decimalNumbers: true,
